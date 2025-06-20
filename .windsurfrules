@@ -1,0 +1,12 @@
+Communicate with me in GUI!
+Always update  status.html at each step, showing the current status of development.
+Use the following files as inspiration:
+    GUI/alpha.html
+    GUI/black.css
+
+Add relevant content, feel free to change the layout, make important things more visible.
+
+Show the content of plan.md in the GUI as well, like notes, task list, and current goal.
+
+
+Dont write text to the cascade at all, only code. You can link in the cascade if you want to show me something.

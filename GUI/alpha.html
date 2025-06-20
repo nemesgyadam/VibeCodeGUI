@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Developer Control Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Theme CSS - Change to white.css for light theme -->
+    <link rel="stylesheet" href="black.css">
+    <!-- <link rel="stylesheet" href="white.css"> -->
+</head>
+<body>
+    <div class="dashboard-grid">
+        <!-- AI Mind Panel -->
+        <div class="panel ai-mind-panel">
+            <div class="panel-title">🧠 AI Thoughts & Observations</div>
+            <div class="ai-thoughts" id="aiThoughts">
+                <div class="thought-bubble">
+                    <div class="thought-timestamp">Just now</div>
+                    <div class="thought-text">I notice you're working on the authentication system. The code structure looks clean, but I'm seeing some potential security concerns in the token validation logic. Consider implementing rate limiting and adding more robust input sanitization.</div>
+                </div>
+            </div>
+            <div class="typing-indicator" id="typingIndicator">AI is analyzing your code...</div>
+        </div>
+        
+        <!-- Project Structure -->
+        <div class="panel main-panel">
+            <div class="panel-title">Project Structure</div>
+            <div class="code-structure" id="codeStructure">
+                <div class="file-item">
+                    <span class="file-name">📁 src/</span>
+                </div>
+                <div class="file-item">
+                    &nbsp;&nbsp;<span class="file-name">📄 app.py</span> <span class="line-count">(142 lines)</span>
+                    <br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="class-name">class App</span>
+                    <br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="function-name">def initialize()</span>
+                    <br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="function-name">def run_server()</span>
+                </div>
+                <div class="file-item">
+                    &nbsp;&nbsp;<span class="file-name">📄 auth.py</span> <span class="line-count">(89 lines)</span>
+                    <br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="class-name">class AuthManager</span>
+                    <br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="function-name">def verify_token()</span>
+                    <br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="function-name">def refresh_session()</span>
+                </div>
+                <div class="file-item">
+                    &nbsp;&nbsp;<span class="file-name">📄 database.py</span> <span class="line-count">(234 lines)</span>
+                    <br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="class-name">class DatabaseManager</span>
+                    <br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="class-name">class QueryBuilder</span>
+                    <br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="function-name">def migrate_schema()</span>
+                </div>
+                <div class="file-item">
+                    <span class="file-name">📁 tests/</span>
+                </div>
+                <div class="file-item">
+                    &nbsp;&nbsp;<span class="file-name">📄 test_auth.py</span> <span class="line-count">(67 lines)</span>
+                </div>
+                <div class="file-item">
+                    <span class="file-name">📁 static/</span>
+                </div>
+                <div class="file-item">
+                    &nbsp;&nbsp;<span class="file-name">📄 main.js</span> <span class="line-count">(156 lines)</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Git Status -->
+        <div class="panel">
+            <div class="panel-title">Git Status</div>
+            <div class="git-status">
+                <div class="git-branch">
+                    <span class="status-indicator status-online"></span>
+                    Branch: feature/user-auth
+                </div>
+                <div style="margin: 8px 0; font-size: 10px;">
+                    <div>Behind origin/main: 3 commits</div>
+                    <div>Last commit: 23 minutes ago</div>
+                </div>
+                <div class="git-changes">
+                    <div class="modified">M  src/auth.py</div>
+                    <div class="added">A  tests/test_auth.py</div>
+                    <div class="modified">M  requirements.txt</div>
+                    <div class="deleted">D  old_config.py</div>
+                </div>
+            </div>
+            <div class="metric-grid" style="margin-top: 10px;">
+                <div class="metric-box">
+                    <span class="metric-value" id="commitCount">47</span>
+                    <div class="metric-label">Commits</div>
+                </div>
+                <div class="metric-box">
+                    <span class="metric-value" id="changedFiles">4</span>
+                    <div class="metric-label">Changed Files</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Package Dependencies -->
+        <div class="panel">
+            <div class="panel-title">Dependencies</div>
+            <div class="package-list" id="packageList">
+                <div class="package-item">
+                    <span class="package-name">flask</span>
+                    <span class="package-version">2.3.3</span>
+                    <span class="package-status latest">✓</span>
+                </div>
+                <div class="package-item">
+                    <span class="package-name">requests</span>
+                    <span class="package-version">2.28.1</span>
+                    <span class="package-status outdated">⚠ 2.31.0</span>
+                </div>
+                <div class="package-item">
+                    <span class="package-name">sqlalchemy</span>
+                    <span class="package-version">2.0.21</span>
+                    <span class="package-status latest">✓</span>
+                </div>
+                <div class="package-item">
+                    <span class="package-name">pytest</span>
+                    <span class="package-version">7.4.2</span>
+                    <span class="package-status latest">✓</span>
+                </div>
+                <div class="package-item">
+                    <span class="package-name">numpy</span>
+                    <span class="package-version">1.24.3</span>
+                    <span class="package-status outdated">⚠ 1.25.2</span>
+                </div>
+                <div class="package-item">
+                    <span class="package-name">pandas</span>
+                    <span class="package-version">2.0.3</span>
+                    <span class="package-status latest">✓</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Build & Test Status -->
+        <div class="panel wide-panel">
+            <div class="panel-title">Build & Test Status</div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                <div>
+                    <div style="margin-bottom: 10px;">
+                        <div style="display: flex; align-items: center; margin-bottom: 5px;">
+                            <span class="status-indicator status-online"></span>
+                            <span style="font-size: 12px;">Build: SUCCESS (2.3s)</span>
+                        </div>
+                        <div style="display: flex; align-items: center; margin-bottom: 5px;">
+                            <span class="status-indicator status-warning"></span>
+                            <span style="font-size: 12px;">Tests: 47/50 passed</span>
+                        </div>
+                        <div style="display: flex; align-items: center;">
+                            <span class="status-indicator status-online"></span>
+                            <span style="font-size: 12px;">Coverage: 89.4%</span>
+                        </div>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="testChart"></canvas>
+                    </div>
+                </div>
+                <div>
+                    <div style="font-size: 11px; margin-bottom: 10px;">
+                        <div style="margin-bottom: 5px; font-weight: bold;">Code Complexity:</div>
+                        <div style="margin: 3px 0;">
+                            auth.py <span style="color: #ff6b35;">(Medium)</span>
+                            <div class="complexity-bar">
+                                <div class="complexity-fill complexity-medium" style="width: 65%;"></div>
+                            </div>
+                        </div>
+                        <div style="margin: 3px 0;">
+                            database.py <span style="color: #f44336;">(High)</span>
+                            <div class="complexity-bar">
+                                <div class="complexity-fill complexity-high" style="width: 85%;"></div>
+                            </div>
+                        </div>
+                        <div style="margin: 3px 0;">
+                            app.py <span style="color: #4caf50;">(Low)</span>
+                            <div class="complexity-bar">
+                                <div class="complexity-fill complexity-low" style="width: 35%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="metric-grid">
+                        <div class="metric-box">
+                            <span class="metric-value" id="linesOfCode">1,247</span>
+                            <div class="metric-label">Lines of Code</div>
+                        </div>
+                        <div class="metric-box">
+                            <span class="metric-value" id="codeFiles">12</span>
+                            <div class="metric-label">Code Files</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- API Endpoints -->
+        <div class="panel">
+            <div class="panel-title">API Endpoints</div>
+            <div class="api-endpoints">
+                <div class="endpoint">
+                    <span class="method-get">GET</span> /api/auth/login
+                    <div style="font-size: 9px; color: #9e9e9e; margin-left: 35px;">200ms avg</div>
+                </div>
+                <div class="endpoint">
+                    <span class="method-post">POST</span> /api/auth/register
+                    <div style="font-size: 9px; color: #9e9e9e; margin-left: 35px;">156ms avg</div>
+                </div>
+                <div class="endpoint">
+                    <span class="method-get">GET</span> /api/users/{id}
+                    <div style="font-size: 9px; color: #9e9e9e; margin-left: 35px;">89ms avg</div>
+                </div>
+                <div class="endpoint">
+                    <span class="method-put">PUT</span> /api/users/{id}
+                    <div style="font-size: 9px; color: #9e9e9e; margin-left: 35px;">134ms avg</div>
+                </div>
+                <div class="endpoint">
+                    <span class="method-delete">DELETE</span> /api/users/{id}
+                    <div style="font-size: 9px; color: #9e9e9e; margin-left: 35px;">67ms avg</div>
+                </div>
+                <div class="endpoint">
+                    <span class="method-get">GET</span> /api/data/export
+                    <div style="font-size: 9px; color: #9e9e9e; margin-left: 35px;">1.2s avg</div>
+                </div>
+            </div>
+            <div class="metric-grid" style="margin-top: 10px;">
+                <div class="metric-box">
+                    <span class="metric-value" id="apiCalls">1,234</span>
+                    <div class="metric-label">API Calls/day</div>
+                </div>
+                <div class="metric-box">
+                    <span class="metric-value" id="errorRate">2.1%</span>
+                    <div class="metric-label">Error Rate</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- TODOs & Issues -->
+        <div class="panel">
+            <div class="panel-title">TODOs & Issues</div>
+            <div style="max-height: 150px; overflow-y: auto;">
+                <div class="todo-item">
+                    TODO: Add input validation to login form
+                    <div style="font-size: 9px; color: #9e9e9e;">auth.py:45</div>
+                </div>
+                <div class="fixme-item">
+                    FIXME: Memory leak in data processing
+                    <div style="font-size: 9px; color: #9e9e9e;">database.py:123</div>
+                </div>
+                <div class="todo-item">
+                    TODO: Implement rate limiting
+                    <div style="font-size: 9px; color: #9e9e9e;">app.py:78</div>
+                </div>
+                <div class="todo-item">
+                    TODO: Add unit tests for QueryBuilder
+                    <div style="font-size: 9px; color: #9e9e9e;">database.py:201</div>
+                </div>
+            </div>
+            <div class="metric-grid" style="margin-top: 10px;">
+                <div class="metric-box">
+                    <span class="metric-value" id="todoCount">12</span>
+                    <div class="metric-label">TODOs</div>
+                </div>
+                <div class="metric-box">
+                    <span class="metric-value" id="fixmeCount">3</span>
+                    <div class="metric-label">FIXMEs</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Development Logs -->
+        <div class="panel">
+            <div class="panel-title">Development Log</div>
+            <div class="log-stream" id="devLogs">
+                <div class="log-entry log-info">[INFO] Server started on port 5000</div>
+                <div class="log-entry log-warn">[WARN] Deprecated function used in auth.py</div>
+                <div class="log-entry log-info">[INFO] Database connection established</div>
+                <div class="log-entry log-error">[ERROR] Failed to load config file</div>
+                <div class="log-entry log-debug">[DEBUG] Processing user authentication</div>
+                <div class="log-entry log-info">[INFO] Hot reload triggered</div>
+            </div>
+            <div class="metric-grid" style="margin-top: 10px;">
+                <div class="metric-box">
+                    <span class="metric-value" id="uptime">4h 23m</span>
+                    <div class="metric-label">Uptime</div>
+                </div>
+                <div class="metric-box">
+                    <span class="metric-value" id="memUsage">142MB</span>
+                    <div class="metric-label">Memory</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Test Results Chart
+        const testCtx = document.getElementById('testChart').getContext('2d');
+        const testChart = new Chart(testCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Passed', 'Failed', 'Skipped'],
+                datasets: [{
+                    data: [47, 3, 0],
+                    backgroundColor: ['#4caf50', '#f44336', '#ff9800'],
+                    borderColor: ['#4caf50', '#f44336', '#ff9800'],
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: { 
+                            color: '#00ff41',
+                            font: { size: 10 }
+                        }
+                    }
+                }
+            }
+        });
+
+        // AI Thoughts - Realistic developer-focused observations
+        const aiThoughts = [
+            "I'm noticing the AuthManager class is getting quite large. Consider splitting the token validation and session management into separate services for better maintainability.",
+            
+            "The database.py file has high complexity. I see several nested loops in the QueryBuilder class. This could be optimized with more efficient query patterns.",
+            
+            "Good job on adding tests for the auth module! However, I notice the test coverage is missing for edge cases like expired tokens and invalid user inputs.",
+            
+            "Your API response times look healthy, but the /api/data/export endpoint is taking 1.2 seconds. Consider implementing pagination or background processing for large datasets.",
+            
+            "I see you have some outdated packages. The requests library has known security vulnerabilities in version 2.28.1. I'd recommend updating to 2.31.0 soon.",
+            
+            "The code structure is well-organized! I particularly like how you've separated concerns between authentication, database operations, and the main application logic.",
+            
+            "I noticed there are 3 failing tests. Looking at the patterns, they seem related to database connection timeouts. Consider adding retry logic or connection pooling.",
+            
+            "Your git branch 'feature/user-auth' is 3 commits behind main. You might want to rebase or merge to avoid potential conflicts later.",
+            
+            "The memory usage is steadily climbing. I suspect there might be a memory leak in the data processing functions. Check if you're properly closing database connections.",
+            
+            "I see a FIXME comment about memory leaks in database.py line 123. This aligns with the increasing memory usage I'm observing. This should be prioritized.",
+            
+            "Your error rate of 2.1% is concerning. Most errors seem to be coming from the authentication endpoints. Consider adding more robust input validation.",
+            
+            "The project has grown to 1,247 lines of code across 12 files. Consider documenting your architecture decisions and adding more inline comments for complex algorithms.",
+            
+            "I notice you're using both Flask and SQLAlchemy - great choices for this type of project. The ORM usage looks clean and follows best practices.",
+            
+            "The TODO about implementing rate limiting is important for security. Given that you're working on authentication, this should be high priority.",
+            
+            "Your API endpoints follow RESTful conventions nicely. The response times are good overall, but monitor that export endpoint closely.",
+        ];
+
+        function addAIThought() {
+            const aiThoughtsContainer = document.getElementById('aiThoughts');
+            const typingIndicator = document.getElementById('typingIndicator');
+            
+            // Show typing indicator
+            typingIndicator.classList.add('active');
+            
+            setTimeout(() => {
+                // Hide typing indicator
+                typingIndicator.classList.remove('active');
+                
+                // Add new thought
+                const thoughtBubble = document.createElement('div');
+                thoughtBubble.className = 'thought-bubble';
+                
+                const timestamp = new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+                const randomThought = aiThoughts[Math.floor(Math.random() * aiThoughts.length)];
+                
+                thoughtBubble.innerHTML = `
+                    <div class="thought-timestamp">${timestamp}</div>
+                    <div class="thought-text">${randomThought}</div>
+                `;
+                
+                aiThoughtsContainer.appendChild(thoughtBubble);
+                
+                // Keep only last 3 thoughts
+                while (aiThoughtsContainer.children.length > 4) { // 3 thoughts + typing indicator
+                    const firstThought = aiThoughtsContainer.querySelector('.thought-bubble');
+                    if (firstThought) {
+                        aiThoughtsContainer.removeChild(firstThought);
+                    }
+                }
+                
+                // Scroll to bottom
+                aiThoughtsContainer.scrollTop = aiThoughtsContainer.scrollHeight;
+            }, 2000); // 2 second typing delay
+        }
+
+        // Update development logs
+        function addDevLog() {
+            const logTypes = ['info', 'warn', 'error', 'debug'];
+            const messages = [
+                '[INFO] File watcher detected change',
+                '[INFO] Auto-save completed',
+                '[WARN] Large file detected',
+                '[ERROR] Syntax error in line 67',
+                '[DEBUG] Variable scope analysis',
+                '[INFO] Code formatted successfully',
+                '[WARN] Unused variable detected'
+            ];
+        }
+    </script>
+</body>
+</html>
