@@ -2,6 +2,14 @@
 
 A powerful extension for AI IDEs (Cursor, Windsurf, Roo) that generates real-time dashboards to enhance your development workflow.
 
+
+<div align="center">
+  <a href="https://www.youtube.com/watch?v=eziYaDdOWgw">
+    <img src="https://img.youtube.com/vi/eziYaDdOWgw/0.jpg" alt="Video Title">
+  </a>
+</div>
+
+
 ## 🚀 Overview
 
 Windsurf-V2.0 transforms your AI-assisted development experience by providing dynamic, real-time dashboards that visualize your development process, project structure, and AI interactions. This extension integrates seamlessly with popular AI IDEs to give you unprecedented visibility into your development workflow.
